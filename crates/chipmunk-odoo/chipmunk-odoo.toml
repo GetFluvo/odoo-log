@@ -1,0 +1,2 @@
+title = "Odoo log"
+description = "Parses Odoo server and build logs into time, pid, level, database, logger and message columns. Traceback lines inherit the level of the log call they belong to."

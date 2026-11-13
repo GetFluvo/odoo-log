@@ -1,0 +1,74 @@
+2026-11-13 15:45:21,083 2056 WARNING ? odoo.tools.config: option --without-demo: since 19.0, invalid boolean value: '', assume True 
+2026-11-13 15:45:21,083 2056 WARNING ? odoo.tools.config: unknown option 'logrotate' in the config file at /home/odoo/.config/odoo.conf, option stored as-is, without parsing 
+2026-11-13 15:45:21,083 2056 INFO ? odoo: Odoo version 19.0 
+2026-11-13 15:45:21,084 2056 INFO ? odoo: Using configuration file at /home/odoo/.config/odoo.conf 
+2026-11-13 15:45:21,084 2056 INFO ? odoo: addons paths: _NamespacePath(['/home/odoo/src/odoo/odoo/addons', '/home/odoo/src/enterprise', '/home/odoo/src/custom/oca_unmerged', '/home/odoo/src/odoo/odoo/addons/base/tests/test_install_addons', '/home/odoo/src/custom/third_party', '/home/odoo/src/custom/oca', '/home/odoo/src/custom/partner', '/home/odoo/src/platform', '/home/odoo/src/odoo/addons', '/home/odoo/src/themes', '/home/odoo/src/custom/custom']) 
+2026-11-13 15:45:21,084 2056 INFO ? odoo: database: acme-main@172.17.0.1:5432 
+2026-11-13 15:45:22,237 2056 INFO ? odoo.addons.module_install_async: module_install_async: patched _button_immediate_function for async install 
+2026-11-13 15:45:22,243 2056 INFO ? odoo.addons.async_logging: async_logging: active  queue_size=10000  handlers=[WatchedFileHandler, StreamHandler] 
+2026-11-13 15:45:22,615 2056 INFO acme-main odoo.modules.loading: loading 1 modules... 
+2026-11-13 15:45:22,624 2056 INFO acme-main odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2026-11-13 15:45:22,801 2056 INFO acme-main odoo.modules.loading: updating modules list 
+2026-11-13 15:45:22,877 2056 INFO acme-main odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via n/a 
+2026-11-13 15:45:30,128 2056 INFO acme-main odoo.addons.base.models.ir_module: ALLOW access to module.button_upgrade on ['ACME Live Inquiry', 'ACME Product Enrichment'] to user __system__ #1 via n/a 
+2026-11-13 15:45:30,128 2056 INFO acme-main odoo.addons.base.models.ir_module: ALLOW access to module.update_list on ['ACME Live Inquiry', 'ACME Product Enrichment'] to user __system__ #1 via n/a 
+2026-11-13 15:45:34,683 2056 INFO acme-main odoo.addons.base.models.ir_module: ALLOW access to module.button_install on [] to user __system__ #1 via n/a 
+2026-11-13 15:45:35,293 2056 INFO acme-main odoo.modules.loading: loading 493 modules... 
+2026-11-13 15:45:35,468 2056 INFO acme-main odoo.addons.base_sparse_field_jsonb.models.fields: base_sparse_field_jsonb: Serialized field now uses JSONB column type 
+2026-11-13 15:45:42,706 2056 INFO acme-main odoo.modules.loading: Loading module acme_product_enrichment (431/493) 
+2026-11-13 15:45:43,480 2056 INFO acme-main odoo.registry: module acme_product_enrichment: creating or updating database tables 
+2026-11-13 15:45:44,482 2056 INFO acme-main odoo.modules.loading: loading acme_product_enrichment/security/ir.model.access.csv 
+2026-11-13 15:45:45,447 2056 INFO acme-main odoo.modules.loading: loading acme_product_enrichment/data/ir_cron.xml 
+2026-11-13 15:45:45,453 2056 INFO acme-main odoo.modules.loading: loading acme_product_enrichment/views/product_template.xml 
+2026-11-13 15:45:46,124 2056 INFO acme-main odoo.modules.loading: loading acme_product_enrichment/views/vendor_make_code.xml 
+2026-11-13 15:45:46,295 2056 INFO acme-main odoo.modules.loading: loading acme_product_enrichment/views/res_config_settings.xml 
+2026-11-13 15:45:46,700 2056 WARNING acme-main odoo.modules.loading: Transient module states were reset 
+2026-11-13 15:45:46,700 2056 ERROR acme-main odoo.registry: Failed to load registry 
+2026-11-13 15:45:46,700 2056 CRITICAL acme-main odoo.service.server: Failed to initialize database `acme-main`. 
+Traceback (most recent call last):
+  File "/home/odoo/src/odoo/odoo/service/server.py", line 1591, in preload_registries
+    registry = Registry.new(dbname, update_module=update_module, install_modules=config['init'], upgrade_modules=config['update'], reinit_modules=config['reinit'])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odoo/src/odoo/odoo/tools/func.py", line 88, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odoo/src/odoo/odoo/orm/registry.py", line 189, in new
+    load_modules(
+  File "/home/odoo/src/odoo/odoo/modules/loading.py", line 466, in load_modules
+    load_module_graph(
+  File "/home/odoo/src/odoo/odoo/modules/loading.py", line 226, in load_module_graph
+    load_data(env, idref, mode, kind='data', package=package)
+  File "/home/odoo/src/odoo/odoo/modules/loading.py", line 61, in load_data
+    convert_file(env, package.name, filename, idref, mode, noupdate=kind == 'demo')
+  File "/home/odoo/src/odoo/odoo/tools/convert.py", line 696, in convert_file
+    convert_xml_import(env, module, fp, idref, mode, noupdate)
+  File "/home/odoo/src/odoo/odoo/tools/convert.py", line 795, in convert_xml_import
+    obj.parse(doc.getroot())
+  File "/home/odoo/src/odoo/odoo/tools/convert.py", line 666, in parse
+    self._tag_root(de)
+  File "/home/odoo/src/odoo/odoo/tools/convert.py", line 619, in _tag_root
+    raise ParseError(msg) from None  # Restart with "--log-handler odoo.tools.convert:DEBUG" for complete traceback
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+odoo.tools.convert.ParseError: while parsing /home/odoo/src/custom/custom/acme_product_enrichment/views/res_config_settings.xml:3
+Error while validating view near:
+
+
+                        <div id="invite_users">
+                            <block title="Users" name="users_setting_container">
+                                <setting id="invite_users_setting">
+                                    <widget name="res_config_invite_users"/>
+
+Field "contract_approval_step" does not exist in model "res.config.settings"
+
+View error context:
+{'file': '/home/odoo/src/custom/custom/acme_product_enrichment/views/res_config_settings.xml',
+ 'line': 6,
+ 'name': 'res.config.settings.view.form.inherit.acme.product.enrichment',
+ 'view': ir.ui.view(4121,),
+ 'view.model': 'res.config.settings',
+ 'view.parent': ir.ui.view(4090,),
+ 'xmlid': 'res_config_settings_view_form'}
+
+2026-11-13 15:45:46,706 2056 INFO acme-main odoo.service.server: Initiating shutdown 
+2026-11-13 15:45:46,706 2056 INFO acme-main odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2026-11-13 15:45:46,706 2056 INFO acme-main odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=20): Closed 1 connections  

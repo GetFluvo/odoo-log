@@ -1,0 +1,12 @@
+[package]
+name = "odoo-log"
+version = "0.1.0"
+description = "Zero-copy parser for Odoo server logs: headers, levels, tracebacks"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords = ["odoo", "log", "parser"]
+categories = ["parser-implementations"]
+
+[dependencies]

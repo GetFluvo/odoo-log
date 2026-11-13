@@ -1,0 +1,27 @@
+[workspace]
+
+[package]
+name = "chipmunk-odoo"
+version = "0.1.0"
+description = "Chipmunk parser plugin for Odoo server logs (columns: time, pid, level, db, logger, message)"
+edition = "2024"
+license = "MIT"
+publish = false
+
+[dependencies]
+odoo-log = { path = "../odoo-log" }
+# Not on crates.io; pinned to the Chipmunk 4.4.0 release commit.
+plugins_api = { git = "https://github.com/esrlabs/chipmunk", rev = "9250b3d10933f2a00092347f8d57fe304e26b7c3", features = ["parser"] }
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+codegen-units = 1
+opt-level = "s"
+debug = false
+strip = true
+lto = true
+
+[package.metadata.component]
+package = "component:chipmunk-odoo"

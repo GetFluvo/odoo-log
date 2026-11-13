@@ -1,0 +1,173 @@
+{
+  "kind": "chipmunk_named_presets",
+  "version": 2,
+  "presets": [
+    {
+      "name": "Odoo",
+      "filters": [
+        {
+          "filter": {
+            "value": "\\bCRITICAL\\b",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "bg": [
+              139,
+              0,
+              0,
+              255
+            ]
+          }
+        },
+        {
+          "filter": {
+            "value": "\\bERROR\\b",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "bg": [
+              192,
+              57,
+              43,
+              255
+            ]
+          }
+        },
+        {
+          "filter": {
+            "value": "\\b(ParseError|ValidationError|UserError|AccessError|MissingError|IntegrityError)\\b|does not exist",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "bg": [
+              255,
+              140,
+              0,
+              255
+            ]
+          }
+        },
+        {
+          "filter": {
+            "value": "\\bWARNING\\b",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "bg": [
+              241,
+              196,
+              15,
+              255
+            ]
+          }
+        },
+        {
+          "filter": {
+            "value": "odoo\\.modules\\.migration|Running upgrade|pre-migrat|post-migrat",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "bg": [
+              142,
+              68,
+              173,
+              255
+            ]
+          }
+        },
+        {
+          "filter": {
+            "value": "Loading module \\S+ \\(\\d+/\\d+\\)|creating or updating database tables",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "bg": [
+              41,
+              128,
+              185,
+              255
+            ]
+          }
+        },
+        {
+          "filter": {
+            "value": "Modules loaded|Registry loaded in|\\d+ modules loaded in",
+            "is_regex": true,
+            "ignore_case": false,
+            "is_word": false
+          },
+          "enabled": true,
+          "colors": {
+            "fg": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "bg": [
+              46,
+              204,
+              113,
+              255
+            ]
+          }
+        }
+      ],
+      "search_values": []
+    }
+  ]
+}
