@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 //! Parser for Odoo server logs.
 //!
 //! Odoo writes one header line per log call:

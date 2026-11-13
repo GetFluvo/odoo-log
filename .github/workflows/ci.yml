@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - run: cargo fmt --all --check
+      - run: cargo fmt --check
+        working-directory: crates/chipmunk-odoo
+      - run: cargo clippy --all-targets -- -D warnings
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
+        with:
+          toolchain: stable
+      - run: cargo test --all-targets
+      - run: cargo test --doc
+
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
+        with:
+          toolchain: "1.97"
+      - run: cargo test -p odoo-log
+
+  chipmunk-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
+        with:
+          toolchain: stable
+          targets: wasm32-wasip2
+          components: clippy
+      - name: Build WASM component
+        working-directory: crates/chipmunk-odoo
+        run: cargo build --release --target wasm32-wasip2
+      - name: Clippy
+        working-directory: crates/chipmunk-odoo
+        run: cargo clippy --target wasm32-wasip2 -- -D warnings
+      - name: Stage plugin directory
+        run: |
+          d=dist/chipmunk-odoo
+          mkdir -p "$d"
+          cp crates/chipmunk-odoo/target/wasm32-wasip2/release/chipmunk_odoo.wasm "$d/chipmunk-odoo.wasm"
+          cp crates/chipmunk-odoo/chipmunk-odoo.toml crates/chipmunk-odoo/README.md "$d/"
+          cp crates/chipmunk-odoo/presets/odoo.json dist/chipmunk-odoo-presets.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: chipmunk-odoo
+          path: dist/

@@ -8,5 +8,6 @@ license.workspace = true
 repository.workspace = true
 keywords = ["odoo", "log", "parser"]
 categories = ["parser-implementations"]
+readme = "README.md"
 
 [dependencies]
